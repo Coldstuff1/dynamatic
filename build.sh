@@ -169,6 +169,7 @@ if should_run_cmake ; then
       -DLLVM_TARGETS_TO_BUILD="host" \
       -DCMAKE_BUILD_TYPE=Release \
       -DLLVM_ENABLE_ASSERTIONS=ON \
+      -DCMAKE_CXX_FLAGS="-include cstdint" \
       $CMAKE_FLAGS_LLVM
   exit_on_fail "Failed to cmake polygeist/llvm-project"
 fi
@@ -222,6 +223,7 @@ if should_run_cmake ; then
       -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
       -DLLVM_ENABLE_ASSERTIONS=ON \
       -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+      -DCMAKE_CXX_FLAGS="-include cstdint" \
       $CMAKE_FLAGS_LLVM
   exit_on_fail "Failed to cmake circt/llvm"
 fi
@@ -259,6 +261,7 @@ if should_run_cmake ; then
       -DCAPNP_DISABLE=ON \
       -DOR_TOOLS_DISABLE=ON \
       -DCAPNP_DISABLE=ON \
+      -DCMAKE_CXX_FLAGS="-include cstdint" \
       $CMAKE_FLAGS_SUPER
   exit_on_fail "Failed to cmake circt"
 fi
@@ -286,6 +289,7 @@ if should_run_cmake ; then
       -DLLVM_ENABLE_ASSERTIONS=ON \
       -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
       -DDYNAMATIC_BUILD_VISUALIZER=$BUILD_VISUALIZER \
+      -DCMAKE_CXX_FLAGS="-include cstdint" \
       $CMAKE_FLAGS_SUPER
   exit_on_fail "Failed to cmake dynamatic"
 fi
