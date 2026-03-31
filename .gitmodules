@@ -4,8 +4,8 @@
   shallow = true
 [submodule "circt"]
 	path = circt
-	url = git@github.com:EPFL-LAP/circt.git
-	branch = main
+	url = git@github.com:Coldstuff1/circt-dev.git
+	branch = hir2
   shallow = true
 [submodule "experimental/visual-dataflow/godot-cpp"]
 	path = experimental/visual-dataflow/godot-cpp
