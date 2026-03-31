@@ -1,6 +1,6 @@
 [submodule "polygeist"]
 	path = polygeist
-	url = https://github.com/llvm/Polygeist.git
+	url = git@github.com:Coldstuff1/Polygeist.git
   shallow = true
 [submodule "circt"]
 	path = circt
