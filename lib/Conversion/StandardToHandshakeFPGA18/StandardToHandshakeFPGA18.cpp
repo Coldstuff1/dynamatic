@@ -707,6 +707,8 @@ LogicalResult StandardToHandshakeFPGA18Pass::lowerFuncOp(func::FuncOp funcOp) {
       return failure();
   }
 
+  MLIRContext *ctx = &getContext();
+
   // The Handshake function only retains the original function's symbol and
   // function type
   SmallVector<NamedAttribute, 4> attributes;
@@ -714,6 +716,25 @@ LogicalResult StandardToHandshakeFPGA18Pass::lowerFuncOp(func::FuncOp funcOp) {
     if (attr.getName() == SymbolTable::getSymbolAttrName() ||
         attr.getName() == funcOp.getFunctionTypeAttrName())
       continue;
+
+    if (attr.getName() == funcOp.getArgAttrsAttrName()) {
+      auto argAttrs = attr.getValue().cast<ArrayAttr>();
+      SmallVector<Attribute, 4> newArgAttrs(argAttrs.begin(), argAttrs.end());
+      newArgAttrs.push_back(DictionaryAttr::get(ctx));
+      attributes.push_back(NamedAttribute(attr.getName(),
+                                          ArrayAttr::get(ctx, newArgAttrs)));
+      continue;
+    }
+    if (attr.getName() == funcOp.getResAttrsAttrName()) {
+      auto resAttrs = attr.getValue().cast<ArrayAttr>();
+      SmallVector<Attribute, 4> newResAttrs(resAttrs.begin(), resAttrs.end());
+      if (funcOp.getResultTypes().empty())
+        newResAttrs.push_back(DictionaryAttr::get(ctx));
+      attributes.push_back(NamedAttribute(attr.getName(),
+                                          ArrayAttr::get(ctx, newResAttrs)));
+      continue;
+    }
+
     attributes.push_back(attr);
   }
 
@@ -721,8 +742,6 @@ LogicalResult StandardToHandshakeFPGA18Pass::lowerFuncOp(func::FuncOp funcOp) {
   SmallVector<Type, 8> argTypes, resTypes;
   llvm::copy(funcOp.getArgumentTypes(), std::back_inserter(argTypes));
   llvm::copy(funcOp.getResultTypes(), std::back_inserter(resTypes));
-
-  MLIRContext *ctx = &getContext();
   handshake::FuncOp newFuncOp = nullptr;
 
   // Replaces the func-level function with a corresponding Handshake-level
