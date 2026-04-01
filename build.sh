@@ -321,6 +321,11 @@ create_symlink build/bin/export-vhdl
 create_symlink build/bin/exp-frequency-profiler
 create_symlink build/bin/handshake-simulator
 create_symlink build/bin/hls-verifier
+create_symlink circt/build/bin/circt-opt
+create_symlink circt/build/bin/circt-lsp-server
+create_symlink circt/llvm/build/bin/mlir-opt
+create_symlink circt/llvm/build/bin/mlir-translate
+create_symlink circt/llvm/build/bin/llc
 
 # Make the scripts used by the frontend executable
 chmod +x tools/dynamatic/scripts/compile.sh
@@ -330,3 +335,10 @@ chmod +x tools/dynamatic/scripts/synthesize.sh
 
 echo ""
 echo_subsection "Build successful!"
+
+echo ""
+echo "======================================"
+echo "You can now build specific benchmark target from the build directory."
+echo "Examples:"
+echo "  cd build && ninja gesummv"
+echo "  cd build && ninja gesummv_verilated"

@@ -77,6 +77,12 @@ set(DYNAMATIC_BIN_INCLUDE_DIR ${DYNAMATIC_BINARY_DIR}/include)
 # Add our own directory to the list of search paths for CMake modules 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
+# include helper functions from HIR
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/tclFunctions.cmake)
+
+# Add circt project.
+add_circt_project(xc7vx690tffg1761-2 ${CMAKE_CURRENT_SOURCE_DIR}/includes/constraints.xdc circt)
+
 # Dynamatic include directories
 include_directories(${DYNAMATIC_INCLUDE_DIR})
 include_directories(${DYNAMATIC_BIN_INCLUDE_DIR})
@@ -129,3 +135,4 @@ add_subdirectory(${DYNAMATIC_SOURCE_DIR}/lib)
 add_subdirectory(${DYNAMATIC_SOURCE_DIR}/test)
 add_subdirectory(${DYNAMATIC_SOURCE_DIR}/tools)
 add_subdirectory(${DYNAMATIC_SOURCE_DIR}/tutorials)
+add_subdirectory(${DYNAMATIC_SOURCE_DIR}/benchmarks)

@@ -60,3 +60,48 @@ mkdir -p out
 ```
 
 This will run the simple buffer placement flow, generating a `.png` circuit image in `./out/comp/visual.png`.
+
+## CIRCT-HIR Usage Guide
+
+This repository contains an MLIR dialect (`hir`) designed to lower High-Level Synthesis (HLS) operations and constructs to statically scheduled circuits. Eventually, it emits SystemVerilog.
+
+### Compilation Flow (MLIR to SystemVerilog)
+
+The primary tool for interacting with the HIR dialect is `circt-opt`, which you build as part of the `circt` submodule or find symlinked in `bin/`.
+
+A typical compilation flow from an input MLIR file (containing `affine` or `hir` dialect operations) down to SystemVerilog uses the following command structure:
+
+```bash
+./bin/circt-opt \
+    -affine-to-hir \
+    -hir-opt \
+    -hir-simplify \
+    -hir-to-hw \
+    -export-split-verilog='dir-name=output_sv_dir' \
+    input.mlir > run.log
+```
+
+#### Passes Explained:
+1. **`-affine-to-hir`**: Converts standard `affine` loop structures and memory accesses into native HIR operations.
+2. **`-hir-opt`**: Applies various HIR-level optimizations.
+3. **`-hir-simplify`**: Cleans up and simplifies the HIR intermediate representation.
+4. **`-hir-to-hw`**: Lowers the HIR dialect into CIRCT's `hw` (hardware) and `sv` (SystemVerilog) dialects.
+5. **`-export-split-verilog`**: Generates the final SystemVerilog source files and splits them by module into the specified directory (`output_sv_dir`).
+
+### Python Cosimulation Framework
+
+The repository includes Python-based cosimulation tools to verify the generated hardware circuits against a golden Python model or testbench. There are multiple environments available in the `tools/` directory (e.g., `cosim-python` and `cosim-cocotb`).
+
+#### Example using Cocotb (`tools/cosim-cocotb`)
+1. **Testbenches**: You can find ready-to-use Python testbenches in files like `tools/cosim-cocotb/test_gesummv.py`.
+2. **Configuration**: The `tests/test.toml` defines the test environment configuration, pointing to the MLIR file, testbench file, and include directories.
+3. **Execution**: The cosimulation flow will automatically invoke Verilator on the generated SystemVerilog and link it with the Python testbench for robust functional verification.
+
+### Vivado Project Generation Flow
+
+The repository has custom CMake functions (e.g., in `cmake/tclFunctions.cmake`) that automate Vivado IP creation and project generation. When you invoke a synthesis target like `gesummv_prj`:
+1. It processes the corresponding original C++ functional files using **Vitis HLS**.
+2. It compiles the MLIR equivalents through the CIRCT-HIR pipeline to generate RTL.
+3. It integrates everything into a unified Vivado block design (`.xpr`).
+
+To configure your own benchmark or workflow within this setup, you can add custom targets inside `benchmarks/<benchmark_name>/CMakeLists.txt` using the wrapper functions `add_sv_target`, `add_verilator_target`, and `add_vivado_project_target`.
