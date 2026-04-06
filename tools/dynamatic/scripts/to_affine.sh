@@ -22,10 +22,12 @@ FUNC_NAME=${5:-$KERNEL_NAME}
 POLYGEIST_PATH="$DYNAMATIC_DIR/polygeist/llvm-project/clang/lib/Headers/"
 POLYGEIST_CLANG_BIN="$DYNAMATIC_DIR/bin/cgeist"
 CIRCT_OPT_BIN="$DYNAMATIC_DIR/bin/circt-opt"
+DYNAMATIC_OPT_BIN="$DYNAMATIC_DIR/bin/dynamatic-opt"
 
 # Generated directories/files
 COMP_DIR="$OUTPUT_DIR/comp"
 F_AFFINE="$COMP_DIR/affine.mlir"
+F_AFFINE_MEM="$COMP_DIR/affine_mem.mlir"
 OUTPUT_SV_DIR="$OUTPUT_DIR/sv"
 
 # ============================================================================ #
@@ -38,6 +40,6 @@ rm -rf "$COMP_DIR" "$OUTPUT_SV_DIR" && mkdir -p "$COMP_DIR" "$OUTPUT_SV_DIR"
 # source -> affine level
 "$POLYGEIST_CLANG_BIN" "$SRC_DIR/$KERNEL_NAME.c" -I \
   "$POLYGEIST_PATH/llvm-project/clang/lib/Headers/" --function="$FUNC_NAME" \
-  -S -O3 --memref-fullrank --raise-scf-to-affine \
+  -S -O3 --memref-fullrank \
   > "$F_AFFINE" 2>/dev/null
 exit_on_fail "Failed to compile source to affine" "Compiled source to affine"

@@ -73,6 +73,7 @@ A typical compilation flow from an input MLIR file (containing `affine` or `hir`
 
 ```bash
 ./bin/circt-opt \
+    -affine-to-hir-prep \
     -affine-to-hir \
     -hir-opt \
     -hir-simplify \
