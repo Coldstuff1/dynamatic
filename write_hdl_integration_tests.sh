@@ -36,9 +36,8 @@ for TEST_DIR in "$TESTS_DIR"/*/; do
         echo "Generating VHDL for test: $TEST_NAME"
         
         # Run the write-hdl script
-        # write-hdl.sh <DYNAMATIC_DIR> <LEGACY_DIR> <OUTPUT_DIR> <KERNEL_NAME>
-        # Passing "." for LEGACY_DIR since you may not have the chisel_lsq jar
-        "$WRITE_HDL_SCRIPT" "$DYNAMATIC_DIR" "." "$TEST_OUT_DIR" "$TEST_NAME"
+        # write-hdl.sh <DYNAMATIC_DIR> <OUTPUT_DIR> <KERNEL_NAME>
+        "$WRITE_HDL_SCRIPT" "$DYNAMATIC_DIR" "$TEST_OUT_DIR" "$TEST_NAME"
         
         if [ $? -eq 0 ]; then
             echo "Successfully generated VHDL for: $TEST_NAME"

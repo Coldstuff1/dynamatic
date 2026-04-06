@@ -96,9 +96,10 @@
     end
 
     //Assign enable signals.
+    genvar i, j;
     generate
-      for(genvar i=0;i<3;i++) begin
-        for(genvar j=0;j<3;j++) begin
+      for(i=0;i<3;i++) begin : i_loop
+        for(j=0;j<3;j++) begin : j_loop
           assign i_rd_en[i][j] = t;
         end
       end
