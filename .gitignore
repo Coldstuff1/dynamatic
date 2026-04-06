@@ -30,7 +30,7 @@
 *.exe
 *.out
 *.app
-
+*.jar
 # Build-related directories
 build/
 bin/
