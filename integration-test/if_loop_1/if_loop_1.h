@@ -1,4 +1,4 @@
-#define N 100
+#define N 128
 
 typedef int in_int_t;
 

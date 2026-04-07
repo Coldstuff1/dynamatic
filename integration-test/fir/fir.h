@@ -8,8 +8,8 @@
 #ifndef FIR_FIR_H
 #define FIR_FIR_H
 
-#define N 1000
-#define N_DEC 999 // = N - 1
+#define N 1024
+#define N_DEC 1023 // = N - 1
 
 typedef int in_int_t;
 
