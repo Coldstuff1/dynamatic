@@ -7,7 +7,7 @@
 #ifndef MATVEC_MATVEC_H
 #define MATVEC_MATVEC_H
 
-#define N 100
+#define N 8
 
 typedef int in_int_t;
 typedef int out_int_t;

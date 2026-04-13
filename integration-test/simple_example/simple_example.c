@@ -3,9 +3,9 @@
 
 void simple_example(inout_int_t a[N]) {
   int x = 0;
-  for (unsigned i = 0; i < N; ++i)
-    x++;
-  a[0] = x;
+  for (unsigned i = 0; i < N; ++i) {
+    a[i] = ++x;
+  }
 }
 
 int main(void) {

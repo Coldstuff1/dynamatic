@@ -1,4 +1,4 @@
-#define N 20
+#define N 16
 
 typedef int in_int_t;
 typedef int inout_int_t;

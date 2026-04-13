@@ -1,7 +1,7 @@
-#define NI 10
-#define NJ 10
-#define NK 10
-#define NL 10
+#define NI 8
+#define NJ 8
+#define NK 8
+#define NL 8
 
 typedef int in_int_t;
 typedef int out_int_t;

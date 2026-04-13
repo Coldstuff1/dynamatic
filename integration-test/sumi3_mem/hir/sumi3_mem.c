@@ -3,14 +3,14 @@
 #pragma HLS extern_func variable = mul_i32 latency = 1
 int add_i32(int a, int b);
 int mul_i32(int a, int b);
-void fir(int di[N], int idx[N]) {
-#pragma HLS INTERFACE port = di storage_type = ram_1p rd_latency = 1
-#pragma HLS INTERFACE port = idx storage_type = ram_1p rd_latency = 1
+void sumi3_mem(int a[N]) {
+#pragma HLS INTERFACE port = a storage_type = ram_1p rd_latency = 1
 #pragma scop
-  int tmp = 0;
+  int sum = 0;
   for (int i = 0; i < N; i++) {
 #pragma HLS pipeline II = 1
-    tmp = add_i32(tmp, mul_i32(idx[i], di[N - 1 - i]));
+    int x = a[i];
+    sum = add_i32(sum, mul_i32(mul_i32(x, x), x));
   }
 #pragma endscop
 }

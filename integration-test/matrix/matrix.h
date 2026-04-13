@@ -7,10 +7,10 @@
 typedef int in_int_t;
 typedef int out_int_t;
 
-#define A_ROWS 30
-#define A_COLS 30
+#define A_ROWS 32
+#define A_COLS 32
 #define B_ROWS A_COLS
-#define B_COLS 30
+#define B_COLS 32
 
 /// Multiplies two matrices and stores the multiplication's result in the last
 /// argument.

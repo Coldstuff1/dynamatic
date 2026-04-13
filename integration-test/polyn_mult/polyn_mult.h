@@ -9,7 +9,7 @@
 
 #include <stdint.h>
 
-#define N 100
+#define N 128
 
 typedef uint32_t out_int_t;
 typedef uint32_t in_int_t;
