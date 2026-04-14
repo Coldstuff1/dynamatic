@@ -39,6 +39,12 @@ module simple_example_tb();
     .clk(clk)
   );
 
+  integer cycle_count = 0;
+  
+  always @(posedge clk) begin
+    cycle_count <= cycle_count + 1;
+  end
+
   initial begin
     // $dumpfile("simple_example.vcd");
     // $dumpvars(0, simple_example_tb);
