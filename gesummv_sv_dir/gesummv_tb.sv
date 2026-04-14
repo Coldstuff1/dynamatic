@@ -134,6 +134,12 @@ module gesummv_tb();
     .clk(clk)
   );
 
+  integer cycle_count = 0;
+  
+  always @(posedge clk) begin
+    cycle_count <= cycle_count + 1;
+  end
+
   initial begin
     // $dumpfile("gesummv.vcd");
     // $dumpvars(0, gesummv_tb);
