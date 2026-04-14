@@ -41,6 +41,12 @@ module sumi3_mem_tb();
     .clk(clk)
   );
 
+  integer cycle_count = 0;
+  
+  always @(posedge clk) begin
+    cycle_count <= cycle_count + 1;
+  end
+
   initial begin
     // $dumpfile("sumi3_mem.vcd");
     // $dumpvars(0, sumi3_mem_tb);
