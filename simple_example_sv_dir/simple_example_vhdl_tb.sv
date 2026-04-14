@@ -79,6 +79,12 @@ module simple_example_vhdl_tb();
     end
   end
 
+  integer cycle_count = 0;
+  
+  always @(posedge clk) begin
+    cycle_count <= cycle_count + 1;
+  end
+
   initial begin
     for (int i = 0; i < 128; i++) begin
       a_mem[i] = 32'd0;
