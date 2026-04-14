@@ -128,6 +128,12 @@ module fir_vhdl_tb();
     end
   end
 
+  integer cycle_count = 0;
+  
+  always @(posedge clk) begin
+    cycle_count <= cycle_count + 1;
+  end
+
   initial begin
     // Initialize memory with dummy data
     for (int i = 0; i < 1024; i++) begin
