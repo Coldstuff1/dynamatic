@@ -64,6 +64,12 @@ module fir_tb();
     .clk(clk)
   );
 
+  integer cycle_count = 0;
+  
+  always @(posedge clk) begin
+    cycle_count <= cycle_count + 1;
+  end
+
   initial begin
     // $dumpfile("fir.vcd");
     // $dumpvars(0, fir_tb);
