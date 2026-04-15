@@ -37,7 +37,7 @@ for TEST_DIR in "$TESTS_DIR"/*/; do
         
         # Run the compilation script using simple buffer placement (1)
         # compile.sh <DYNAMATIC_DIR> <SRC_DIR> <OUTPUT_DIR> <KERNEL_NAME> <USE_SIMPLE_BUFFERS>
-        "$COMPILE_SCRIPT" "$DYNAMATIC_DIR" "$TEST_DIR" "$TEST_OUT_DIR" "$TEST_NAME" 1
+        "$COMPILE_SCRIPT" "$DYNAMATIC_DIR" "$TEST_DIR" "$TEST_OUT_DIR" "$TEST_NAME" 0
         
         if [ $? -eq 0 ]; then
             echo "Successfully compiled: $TEST_NAME"
