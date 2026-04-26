@@ -3,18 +3,11 @@
 #define mul_i32(a, b) (a * b)
 void gesummv(int alpha, int beta, int tmp[8], int A[8][8], int B[8][8],
              int X[8], int Y[8]) {
-#pragma HLS INTERFACE port = tmp storage_type = ram_1p wr_latency = 1
-#pragma HLS INTERFACE port = A storage_type = ram_1p rd_latency = 1
-#pragma HLS INTERFACE port = B storage_type = ram_1p rd_latency = 1
-#pragma HLS INTERFACE port = X storage_type = ram_1p rd_latency = 1
-#pragma HLS INTERFACE port = Y storage_type = ram_1p wr_latency = 1
 
   for (int i = 0; i < 8; i++) {
-#pragma HLS pipeline II = 18
     int tmp_reg = 0;
     int y_reg = 0;
     for (int j = 0; j < 8; j++) {
-#pragma HLS pipeline II = 1
       int xj = X[j];
       int t1 = mul_i32(A[i][j], xj);
       int t2 = mul_i32(B[i][j], xj);

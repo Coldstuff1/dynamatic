@@ -29,24 +29,24 @@ void kernel_2mm_hir(DATA_TYPE alpha, DATA_TYPE beta,
   /* D := alpha*A*B*C + beta*D */
   DATA_TYPE acc;
   for (i = 0; i < _PB_NI; i++)
-#pragma HLS pipeline II = 144
+#pragma HLS pipeline II = 72
     for (j = 0; j < _PB_NJ; j++) {
-#pragma HLS pipeline II = 18
+#pragma HLS pipeline II = 9
       acc = 0;
       for (k = 0; k < _PB_NK; ++k)
-#pragma HLS pipeline II = 2
+#pragma HLS pipeline II = 1
         acc = add_i32(acc, mul_i32(alpha, mul_i32(A[i][k], B[k][j])));
       tmp[i][j] = acc;
     }
 
   DATA_TYPE acc2;
   for (i = 0; i < _PB_NI; i++)
-#pragma HLS pipeline II = 144
+#pragma HLS pipeline II = 72
     for (j = 0; j < _PB_NL; j++) {
-#pragma HLS pipeline II = 18
+#pragma HLS pipeline II = 9
       acc2 = mul_i32(D[i][j], beta);
       for (k = 0; k < _PB_NJ; ++k) {
-#pragma HLS pipeline II = 2
+#pragma HLS pipeline II = 1
         acc2 = add_i32(acc2, mul_i32(tmp[i][k], C[k][j]));
       }
       D[i][j] = acc2;
