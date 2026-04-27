@@ -175,6 +175,17 @@
     assign out = a+b;
   endmodule
 
+  module sub_i32(
+    output wire[31:0] out,
+    input wire[31:0] a,
+    input wire [31:0] b,
+    input wire t,
+    input wire clk,
+    input wire rst
+  );
+    assign out = a-b;
+  endmodule
+
   module mul_i32(
     output reg[31:0] out,
     input wire[31:0] a,

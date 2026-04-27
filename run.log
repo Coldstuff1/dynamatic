@@ -1,0 +1,259 @@
+module {
+  hw.module.extern @reg_1x64_r0_w1<ELEMENT_WIDTH: i64>(in %p0_rd_en : i1, out p0_rd_data : i64, in %p1_wr_en : i1, in %p1_wr_data : i64, in %t : i1, in %clk : i1, in %rst : i1) attributes {verilogName = "reg_r0_w1"}
+  hw.module.extern @reg_1x32_r0_w1<ELEMENT_WIDTH: i64>(in %p0_rd_en : i1, out p0_rd_data : i32, in %p1_wr_en : i1, in %p1_wr_data : i32, in %t : i1, in %clk : i1, in %rst : i1) attributes {verilogName = "reg_r0_w1"}
+  hw.module.extern @mul_i32(in %a : i32, in %b : i32, in %t : i1, in %clk : i1, in %rst : i1, out out : i32) attributes {verilogName = "mul_i32"}
+  hw.module @vector_rescale(out a_p0_addr_en : i1, out a_p0_addr_data : i10, out a_p0_rd_en : i1, in %a_p0_rd_data : i32, in %c : i32, out b_p0_addr_en : i1, out b_p0_addr_data : i10, out b_p0_wr_en : i1, out b_p0_wr_data : i32, in %t : i1, in %clk : i1, in %rst : i1) {
+    %0 = sv.wire {hw.verilogName = "_GEN"} : !hw.inout<i1>
+    %1 = sv.wire {hw.verilogName = "_GEN_0"} : !hw.inout<i1>
+    %2 = sv.wire {hw.verilogName = "_GEN_1"} : !hw.inout<i32>
+    %3 = sv.wire {hw.verilogName = "_GEN_2"} : !hw.inout<i1>
+    %4 = sv.wire {hw.verilogName = "_GEN_3"} : !hw.inout<i64>
+    %5 = sv.wire {hw.verilogName = "_GEN_4"} : !hw.inout<i1>
+    %6 = sv.wire {hw.verilogName = "_GEN_5"} : !hw.inout<i32>
+    %_reg_1x32_r0_w1_inst2_p0_rd_data = sv.wire {hw.verilogName = "_reg_1x32_r0_w1_inst2_p0_rd_data"} : !hw.inout<i32>
+    %_reg_1x64_r0_w1_inst1_p0_rd_data = sv.wire {hw.verilogName = "_reg_1x64_r0_w1_inst1_p0_rd_data"} : !hw.inout<i64>
+    %_mul_i32_inst0_out = sv.wire {hw.verilogName = "_mul_i32_inst0_out"} : !hw.inout<i32>
+    %_reg_1x32_r0_w1_inst0_p0_rd_data = sv.wire {hw.verilogName = "_reg_1x32_r0_w1_inst0_p0_rd_data"} : !hw.inout<i32>
+    %_ForOP_SM0_iv = sv.wire {hw.verilogName = "_ForOP_SM0_iv"} : !hw.inout<i64>
+    %_ForOP_SM0_done = sv.wire {hw.verilogName = "_ForOP_SM0_done"} : !hw.inout<i1>
+    %x_i1 = sv.constantX : i1
+    %x_i10 = sv.constantX : i10
+    %x_i1_0 = sv.constantX : i1
+    %x_i1_1 = sv.constantX : i1
+    %x_i10_2 = sv.constantX : i10
+    %x_i1_3 = sv.constantX : i1
+    %x_i32 = sv.constantX : i32
+    %c1_i64 = hw.constant 1 : i64
+    %c1024_i64 = hw.constant 1024 : i64
+    %c0_i64 = hw.constant 0 : i64
+    %true = hw.constant true
+    %false = hw.constant false
+    %x_i1_4 = sv.constantX : i1
+    %x_i32_5 = sv.constantX : i32
+    %x_i1_6 = sv.constantX : i1
+    %x_i32_7 = sv.constantX : i32
+    %x_i1_8 = sv.constantX : i1
+    %x_i10_9 = sv.constantX : i10
+    %x_i1_10 = sv.constantX : i1
+    %x_i1_11 = sv.constantX : i1
+    %x_i64 = sv.constantX : i64
+    %x_i1_12 = sv.constantX : i1
+    %x_i1_13 = sv.constantX : i1
+    %x_i32_14 = sv.constantX : i32
+    %x_i1_15 = sv.constantX : i1
+    %x_i1_16 = sv.constantX : i1
+    %x_i10_17 = sv.constantX : i10
+    %x_i1_18 = sv.constantX : i1
+    %x_i1_19 = sv.constantX : i1
+    %x_i10_20 = sv.constantX : i10
+    %x_i1_21 = sv.constantX : i1
+    %x_i32_22 = sv.constantX : i32
+    %x_i1_23 = sv.constantX : i1
+    %x_i10_24 = sv.constantX : i10
+    %x_i1_25 = sv.constantX : i1
+    %true_26 = hw.constant true
+    %x_i1_27 = sv.constantX : i1
+    %x_i1_28 = sv.constantX : i1
+    %7 = sv.read_inout %_ForOP_SM0_done : !hw.inout<i1>
+    %8 = comb.xor %7, %true_26 : i1
+    %9 = comb.and %t, %true : i1
+    %10 = sv.wire {hw.verilogName = "_GEN_6"} : !hw.inout<i1>
+    sv.assign %10, %9 : i1
+    %11 = sv.read_inout %1 : !hw.inout<i1>
+    %12 = comb.and %11, %8 : i1
+    %13 = sv.read_inout %10 : !hw.inout<i1>
+    %14 = comb.or %13, %12 : i1
+    %15 = sv.wire {hw.verilogName = "_GEN_7"} : !hw.inout<i1>
+    sv.assign %15, %14 : i1
+    %16 = comb.xor %true, %true_26 : i1
+    %17 = comb.and %t, %16 : i1
+    %18 = sv.wire {hw.verilogName = "_GEN_8"} : !hw.inout<i1>
+    sv.assign %18, %17 : i1
+    %19 = sv.read_inout %_ForOP_SM0_done : !hw.inout<i1>
+    %20 = sv.read_inout %1 : !hw.inout<i1>
+    %21 = comb.and %20, %19 : i1
+    %22 = sv.read_inout %18 : !hw.inout<i1>
+    %23 = comb.or %22, %21 : i1
+    %x_i32_29 = sv.constantX : i32
+    %24 = sv.read_inout %10 : !hw.inout<i1>
+    %25 = sv.read_inout %_reg_1x32_r0_w1_inst2_p0_rd_data : !hw.inout<i32>
+    %26 = comb.mux %24, %c, %25 : i32
+    %27 = sv.wire {hw.verilogName = "_GEN_9"} : !hw.inout<i32>
+    sv.assign %27, %26 : i32
+    %28 = sv.read_inout %15 : !hw.inout<i1>
+    %ForOP_SM0.iv, %ForOP_SM0.done = hw.instance "ForOP_SM0" @ForOp_state_machine0(lb: %c0_i64: i64, ub: %c1024_i64: i64, step: %c1_i64: i64, start: %t: i1, next: %28: i1, clk: %clk: i1, rst: %rst: i1) -> (iv: i64, done: i1) {hw.verilogName = "ForOP_SM0"}
+    sv.assign %_ForOP_SM0_done, %ForOP_SM0.done : i1
+    sv.assign %_ForOP_SM0_iv, %ForOP_SM0.iv : i64
+    %29 = sv.read_inout %_ForOP_SM0_iv : !hw.inout<i64>
+    %30 = comb.mul %29, %c1_i64 : i64
+    %31 = comb.add %30, %c0_i64 : i64
+    %32 = sv.wire {hw.verilogName = "_GEN_10"} : !hw.inout<i64>
+    sv.assign %32, %31 : i64
+    %33 = sv.read_inout %32 : !hw.inout<i64>
+    %34 = comb.extract %33 from 0 : (i64) -> i10
+    %35 = sv.read_inout %15 : !hw.inout<i1>
+    %36 = comb.mux %35, %true, %false : i1
+    %37 = sv.wire {hw.verilogName = "_GEN_11"} : !hw.inout<i1>
+    sv.assign %37, %36 : i1
+    %38 = sv.read_inout %15 : !hw.inout<i1>
+    %39 = comb.mux %38, %34, %x_i10_17 : i10
+    %40 = sv.reg {hw.verilogName = "_GEN_12"} : !hw.inout<i1> 
+    %false_30 = hw.constant false
+    sv.alwaysff(posedge %clk) {
+      %104 = sv.read_inout %15 : !hw.inout<i1>
+      sv.passign %40, %104 : i1
+    }(syncreset : posedge %rst) {
+      sv.passign %40, %false_30 : i1
+    }
+    %x_i1_31 = sv.constantX : i1
+    %x_i32_32 = sv.constantX : i32
+    %x_i1_33 = sv.constantX : i1
+    %x_i32_34 = sv.constantX : i32
+    %41 = sv.read_inout %15 : !hw.inout<i1>
+    %42 = sv.read_inout %37 : !hw.inout<i1>
+    %43 = sv.read_inout %6 : !hw.inout<i32>
+    %44 = sv.read_inout %5 : !hw.inout<i1>
+    %reg_1x32_r0_w1_inst0.p0_rd_data = hw.instance "reg_1x32_r0_w1_inst0" @reg_1x32_r0_w1<ELEMENT_WIDTH: i64 = 32>(p0_rd_en: %44: i1, p1_wr_en: %42: i1, p1_wr_data: %43: i32, t: %41: i1, clk: %clk: i1, rst: %rst: i1) -> (p0_rd_data: i32) {hw.verilogName = "reg_1x32_r0_w1_inst0"}
+    sv.assign %_reg_1x32_r0_w1_inst0_p0_rd_data, %reg_1x32_r0_w1_inst0.p0_rd_data : i32
+    %45 = sv.read_inout %15 : !hw.inout<i1>
+    %46 = sv.read_inout %27 : !hw.inout<i32>
+    %47 = comb.mux %45, %46, %x_i32_14 : i32
+    sv.assign %6, %47 : i32
+    %48 = sv.reg {hw.verilogName = "_GEN_13"} : !hw.inout<i1> 
+    %false_35 = hw.constant false
+    sv.alwaysff(posedge %clk) {
+      %104 = sv.read_inout %15 : !hw.inout<i1>
+      sv.passign %48, %104 : i1
+    }(syncreset : posedge %rst) {
+      sv.passign %48, %false_35 : i1
+    }
+    %49 = sv.read_inout %48 : !hw.inout<i1>
+    %50 = comb.mux %49, %true, %false : i1
+    sv.assign %5, %50 : i1
+    %51 = sv.read_inout %_reg_1x32_r0_w1_inst0_p0_rd_data : !hw.inout<i32>
+    %52 = sv.read_inout %48 : !hw.inout<i1>
+    %mul_i32_inst0.out = hw.instance "mul_i32_inst0" @mul_i32(a: %a_p0_rd_data: i32, b: %51: i32, t: %52: i1, clk: %clk: i1, rst: %rst: i1) -> (out: i32) {hw.verilogName = "mul_i32_inst0"}
+    sv.assign %_mul_i32_inst0_out, %mul_i32_inst0.out : i32
+    %x_i1_36 = sv.constantX : i1
+    %x_i64_37 = sv.constantX : i64
+    %x_i1_38 = sv.constantX : i1
+    %x_i64_39 = sv.constantX : i64
+    %53 = sv.read_inout %15 : !hw.inout<i1>
+    %54 = sv.read_inout %37 : !hw.inout<i1>
+    %55 = sv.read_inout %3 : !hw.inout<i1>
+    %56 = sv.read_inout %4 : !hw.inout<i64>
+    %reg_1x64_r0_w1_inst1.p0_rd_data = hw.instance "reg_1x64_r0_w1_inst1" @reg_1x64_r0_w1<ELEMENT_WIDTH: i64 = 64>(p0_rd_en: %55: i1, p1_wr_en: %54: i1, p1_wr_data: %56: i64, t: %53: i1, clk: %clk: i1, rst: %rst: i1) -> (p0_rd_data: i64) {hw.verilogName = "reg_1x64_r0_w1_inst1"}
+    sv.assign %_reg_1x64_r0_w1_inst1_p0_rd_data, %reg_1x64_r0_w1_inst1.p0_rd_data : i64
+    %57 = sv.read_inout %15 : !hw.inout<i1>
+    %58 = sv.read_inout %_ForOP_SM0_iv : !hw.inout<i64>
+    %59 = comb.mux %57, %58, %x_i64 : i64
+    sv.assign %4, %59 : i64
+    %60 = sv.reg {hw.verilogName = "_GEN_14"} : !hw.inout<array<2xi1>> 
+    %false_40 = hw.constant false
+    %61 = sv.read_inout %60 : !hw.inout<array<2xi1>>
+    %62 = hw.array_slice %61[%false_40] : (!hw.array<2xi1>) -> !hw.array<1xi1>
+    %63 = sv.read_inout %15 : !hw.inout<i1>
+    %64 = hw.array_create %63 : i1
+    %65 = hw.array_concat %62, %64 : !hw.array<1xi1>, !hw.array<1xi1>
+    %false_41 = hw.constant false
+    %66 = hw.array_create %false_41, %false_41 : i1
+    sv.alwaysff(posedge %clk) {
+      sv.passign %60, %65 : !hw.array<2xi1>
+    }(syncreset : posedge %rst) {
+      sv.passign %60, %66 : !hw.array<2xi1>
+    }
+    %true_42 = hw.constant true
+    %67 = sv.read_inout %60 : !hw.inout<array<2xi1>>
+    %68 = hw.array_get %67[%true_42] : !hw.array<2xi1>, i1
+    %69 = comb.mux %68, %true, %false : i1
+    sv.assign %3, %69 : i1
+    %70 = sv.read_inout %_reg_1x64_r0_w1_inst1_p0_rd_data : !hw.inout<i64>
+    %71 = comb.mul %70, %c1_i64 : i64
+    %72 = comb.add %71, %c0_i64 : i64
+    %73 = sv.wire {hw.verilogName = "_GEN_15"} : !hw.inout<i64>
+    sv.assign %73, %72 : i64
+    %74 = sv.read_inout %73 : !hw.inout<i64>
+    %75 = comb.extract %74 from 0 : (i64) -> i10
+    %76 = comb.mux %68, %75, %x_i10_9 : i10
+    %77 = sv.read_inout %_mul_i32_inst0_out : !hw.inout<i32>
+    %78 = comb.mux %68, %77, %x_i32_7 : i32
+    %x_i1_43 = sv.constantX : i1
+    %x_i32_44 = sv.constantX : i32
+    %x_i1_45 = sv.constantX : i1
+    %x_i32_46 = sv.constantX : i32
+    %79 = sv.read_inout %15 : !hw.inout<i1>
+    %80 = sv.read_inout %37 : !hw.inout<i1>
+    %81 = sv.read_inout %2 : !hw.inout<i32>
+    %82 = sv.read_inout %0 : !hw.inout<i1>
+    %reg_1x32_r0_w1_inst2.p0_rd_data = hw.instance "reg_1x32_r0_w1_inst2" @reg_1x32_r0_w1<ELEMENT_WIDTH: i64 = 32>(p0_rd_en: %82: i1, p1_wr_en: %80: i1, p1_wr_data: %81: i32, t: %79: i1, clk: %clk: i1, rst: %rst: i1) -> (p0_rd_data: i32) {hw.verilogName = "reg_1x32_r0_w1_inst2"}
+    sv.assign %_reg_1x32_r0_w1_inst2_p0_rd_data, %reg_1x32_r0_w1_inst2.p0_rd_data : i32
+    %83 = sv.read_inout %15 : !hw.inout<i1>
+    %84 = sv.read_inout %27 : !hw.inout<i32>
+    %85 = comb.mux %83, %84, %x_i32_5 : i32
+    sv.assign %2, %85 : i32
+    %86 = sv.reg {hw.verilogName = "_GEN_16"} : !hw.inout<array<3xi1>> 
+    %c0_i2 = hw.constant 0 : i2
+    %87 = sv.read_inout %86 : !hw.inout<array<3xi1>>
+    %88 = hw.array_slice %87[%c0_i2] : (!hw.array<3xi1>) -> !hw.array<2xi1>
+    %89 = sv.read_inout %15 : !hw.inout<i1>
+    %90 = hw.array_create %89 : i1
+    %91 = hw.array_concat %88, %90 : !hw.array<2xi1>, !hw.array<1xi1>
+    %false_47 = hw.constant false
+    %92 = hw.array_create %false_47, %false_47, %false_47 : i1
+    sv.alwaysff(posedge %clk) {
+      sv.passign %86, %91 : !hw.array<3xi1>
+    }(syncreset : posedge %rst) {
+      sv.passign %86, %92 : !hw.array<3xi1>
+    }
+    %c-2_i2 = hw.constant -2 : i2
+    %93 = sv.read_inout %86 : !hw.inout<array<3xi1>>
+    %94 = hw.array_get %93[%c-2_i2] : !hw.array<3xi1>, i2
+    sv.assign %1, %94 : i1
+    %95 = sv.read_inout %1 : !hw.inout<i1>
+    %96 = comb.mux %95, %true, %false : i1
+    sv.assign %0, %96 : i1
+    %97 = sv.read_inout %18 : !hw.inout<i1>
+    %98 = sv.read_inout %_reg_1x32_r0_w1_inst2_p0_rd_data : !hw.inout<i32>
+    %99 = comb.mux %97, %c, %98 : i32
+    %100 = sv.read_inout %37 : !hw.inout<i1>
+    %101 = sv.read_inout %37 : !hw.inout<i1>
+    %102 = sv.read_inout %3 : !hw.inout<i1>
+    %103 = sv.read_inout %3 : !hw.inout<i1>
+    hw.output %101, %39, %100, %103, %76, %102, %78 : i1, i10, i1, i1, i10, i1, i32
+  }
+  hw.module @ForOp_state_machine0(in %lb : i64, in %ub : i64, in %step : i64, in %start : i1, in %next : i1, in %clk : i1, in %rst : i1, out iv : i64, out done : i1) {
+    %false = hw.constant false
+    %0 = comb.concat %false, %lb : i1, i64
+    %1 = comb.concat %false, %ub : i1, i64
+    %2 = comb.concat %false, %step : i1, i64
+    %iv_reg = sv.reg {hw.verilogName = "iv_reg"} : !hw.inout<i65> 
+    %done_reg = sv.reg {hw.verilogName = "done_reg"} : !hw.inout<i1> 
+    %3 = sv.read_inout %iv_reg : !hw.inout<i65>
+    %4 = comb.mux %start, %0, %3 : i65
+    %5 = sv.wire {hw.verilogName = "_GEN"} : !hw.inout<i65>
+    sv.assign %5, %4 : i65
+    %6 = sv.read_inout %5 : !hw.inout<i65>
+    %7 = comb.add %6, %2 : i65
+    %8 = sv.wire {hw.verilogName = "_GEN_0"} : !hw.inout<i65>
+    sv.assign %8, %7 : i65
+    %9 = sv.read_inout %8 : !hw.inout<i65>
+    %10 = comb.icmp uge %9, %1 : i65
+    %11 = comb.or %start, %next : i1
+    %x_i65 = sv.constantX : i65
+    sv.alwaysff(posedge %clk) {
+      sv.if %11 {
+        %15 = sv.read_inout %8 : !hw.inout<i65>
+        sv.passign %iv_reg, %15 : i65
+        sv.passign %done_reg, %10 : i1
+      }
+    }(syncreset : posedge %rst) {
+      sv.passign %iv_reg, %x_i65 : i65
+      sv.passign %done_reg, %false : i1
+    }
+    %12 = sv.read_inout %5 : !hw.inout<i65>
+    %13 = comb.extract %12 from 0 : (i65) -> i64
+    %14 = sv.read_inout %done_reg : !hw.inout<i1>
+    hw.output %13, %14 : i64, i1
+  }
+}
+
